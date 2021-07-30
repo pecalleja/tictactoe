@@ -1,8 +1,7 @@
 import ui
+import game
 
-game = [
-    [True, False, True],
-    [False, True, False],
-    [True, True, False],
-]
-ui.ConsoleRender(game).render()
+
+init_string = input("Enter cells:")
+
+ui.ConsoleRender(game.TickTackGame(init_string).board).render()
