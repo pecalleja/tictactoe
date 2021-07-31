@@ -45,3 +45,14 @@ class TickTackGame:
         columns = match in self.transposed_board
         diagonal = match in [self.diagonals_up, self.diagonals_down]
         return any([rows, columns, diagonal])
+
+    def make_a_move(self, player, row, col):
+        if self.board[row][col] not in ["X", "O"]:
+            self.board[row][col] = player
+            self.transposed_board[col][row] = player
+            if col == row:
+                self.diagonals_down[col] = self.board[row][col]
+            if col + row == self.large - 1:
+                self.diagonals_up[row] = self.board[row][col]
+        else:
+            raise ValueError("This cell is occupied!")
