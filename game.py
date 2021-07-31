@@ -19,17 +19,13 @@ class TickTackGame:
             index = 0
             for i in range(self.large):
                 for j in range(self.width):
+                    self.board[i][j] = init_string[index]
+                    self.transposed_board[j][i] = init_string[index]
                     if init_string[index] == "X":
-                        self.board[i][j] = True
-                        self.transposed_board[j][i] = True
                         self.x_count += 1
                     elif init_string[index] == "O":
-                        self.board[i][j] = False
-                        self.transposed_board[j][i] = False
                         self.o_count += 1
                     else:
-                        self.board[i][j] = None
-                        self.transposed_board[j][i] = None
                         self.missing += 1
                     if i == j:
                         self.diagonals_down[i] = self.board[i][j]
@@ -42,9 +38,9 @@ class TickTackGame:
 
     def check_player_win(self, player) -> bool:
         if player == "X":
-            match = [True, True, True]
+            match = ["X", "X", "X"]
         else:
-            match = [False, False, False]
+            match = ["O", "O", "O"]
         rows = match in self.board
         columns = match in self.transposed_board
         diagonal = match in [self.diagonals_up, self.diagonals_down]

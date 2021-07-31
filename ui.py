@@ -1,19 +1,14 @@
 class ConsoleRender:
-    def __init__(self, game: list[list[bool]]):
-        self.game = game
+    def __init__(self, board: list[list[bool]]):
+        self.board = board
 
     def render(self):
         print("---------")
-        for row in self.game:
+        for row in self.board:
             total = len(row)
             the_row = ""
             for index, col in enumerate(row):
-                if col is True:
-                    element = "X"
-                elif col is False:
-                    element = "O"
-                else:
-                    element = "_"
+                element = col
                 if index != total-1:
                     element += " "
                 the_row += element
