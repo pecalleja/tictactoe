@@ -20,17 +20,17 @@ while True:
         print(f"Coordinates should be from 1 to {len(the_game.board)}!")
         continue
 
+    player = players.pop(0)
     try:
-        player = players.pop(0)
         the_game.make_a_move(player, x - 1, y - 1)
         ui.ConsoleRender(the_game.board).render()
         result = the_game.check_game_status()
         if result is not None:
             print(result)
             break
-        else:
-            players.append(player)
     except ValueError:
+        players.insert(0, player)
         print("This cell is occupied! Choose another one!")
         continue
 
+    players.append(player)
