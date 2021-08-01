@@ -6,8 +6,7 @@ class TickTackGame:
     missing = 0
     x_count = 0
     o_count = 0
-    x_win = None
-    o_win = None
+    winners = {}
 
     def __init__(self, init_string=None):
         self.board = [[None] * self.width for _ in range(self.large)]
@@ -33,8 +32,8 @@ class TickTackGame:
                         self.diagonals_up[i] = self.board[i][j]
                     index += 1
 
-        self.x_win = self.check_player_win("X")
-        self.o_win = self.check_player_win("O")
+        self.winners["X"] = self.check_player_win("X")
+        self.winners["O"] = self.check_player_win("X")
 
     def check_player_win(self, player) -> bool:
         if player == "X":
@@ -50,9 +49,22 @@ class TickTackGame:
         if self.board[row][col] not in ["X", "O"]:
             self.board[row][col] = player
             self.transposed_board[col][row] = player
+            self.missing -= 1
             if col == row:
                 self.diagonals_down[col] = self.board[row][col]
             if col + row == self.large - 1:
                 self.diagonals_up[row] = self.board[row][col]
         else:
             raise ValueError("This cell is occupied!")
+
+        self.winners[player] = self.check_player_win(player)
+
+    def check_game_status(self):
+        if self.winners["X"] and not self.winners["O"]:
+            return "X wins"
+        elif self.winners["O"] and not self.winners["X"]:
+            return "O wins"
+        elif self.winners["X"] is False and self.winners["O"] is False and self.missing == 0:
+            return "Draw"
+        else:
+            return None
