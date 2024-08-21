@@ -1,0 +1,3 @@
+## [Simple Tic-Tac-Toe with Python](https://hyperskill.org/projects/73)
+
+I developed a Python-based Tic-Tac-Toe game as part of a project on JetBrains Academy. This classic game, known for its simplicity yet strategic depth, was an excellent exercise in planning and building a program from the ground up. Through this project, I honed my skills in functions, nested lists, list comprehension, error handling, and user input processing. The experience also involved writing a multi-line program that dynamically responds to user actions, analyzes the game state, and ensures the game's logic is sound.
